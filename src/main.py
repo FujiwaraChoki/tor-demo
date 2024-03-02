@@ -71,7 +71,7 @@ for i in range(rounds):
     print(f"Round {i + 1} of {rounds}")
     renew_connection()
     session = get_tor_session()
-    print(colored(session.get("http://httpbin.org/ip").json()["origin"], "green"))
+    print(colored(f'Exit Node IP: {session.get("http://httpbin.org/ip").json()["origin"]}', "green"))
     print("-" * 80)
     session.close()
     time.sleep(5)
