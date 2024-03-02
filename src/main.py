@@ -18,7 +18,7 @@ def print_circuit_info(controller: Controller):
 
     circuit_id_list = [circuit.id for circuit in circuit_list if circuit.status == CircStatus.BUILT]
 
-    print(f"{colored('Circuit ID', 'green')}\t\t{colored('Status', 'green')}\t{colored('Path', 'green')}")
+    print(f"{colored('Circuit ID', 'green')}\t{colored('Status', 'green')}\t{colored('Path', 'green')}")
     print("-" * 80)
     for circuit_id in circuit_id_list:
         circuit: CircuitEvent = controller.get_circuit(circuit_id)
@@ -26,7 +26,7 @@ def print_circuit_info(controller: Controller):
             continue
         # [1] to use nickname instead of fingerprint
         path = ["".join(controller.get_network_status(entry[1]).address) for entry in circuit.path]
-        path_str = " -> ".join(str(path))
+        path_str = "".join(str(path))
 
         print(f"{str(circuit_id)}\t\t{str(circuit.status)}\t{path_str}")
 
