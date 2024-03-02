@@ -24,9 +24,8 @@ def print_circuit_info(controller: Controller):
         circuit: CircuitEvent = controller.get_circuit(circuit_id)
         if circuit.status != CircStatus.BUILT:
             continue
-        print(circuit.path)
-        # [1] to use nickname, [0] to use fingerprint
-        path = [controller.get_network_status(entry[1]).address for entry in circuit.path]
+        # [1] to use nickname instead of fingerprint
+        path = [controller.get_network_status(entry[1]) for entry in circuit.path]
         path_str = "".join(str(path))
 
         print(f"{str(circuit_id)}\t\t{str(circuit.status)}\t{path_str}")
@@ -72,7 +71,7 @@ for i in range(rounds):
     print(f"Round {i + 1} of {rounds}")
     renew_connection()
     session = get_tor_session()
-    print(session.get("http://httpbin.org/ip").json()["origin"])
+    print(colored(session.get("http://httpbin.org/ip").json()["origin"]), "green")
     print("-" * 80)
     session.close()
     time.sleep(5)
