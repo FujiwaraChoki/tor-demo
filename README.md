@@ -45,6 +45,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Note
+
+Add this to your `torrc` file:
+
+```bash
+FetchDirInfoEarly 1
+FetchDirInfoExtraEarly 1
+FetchUselessDescriptors 1
+DownloadExtraInfo 1
+ControlPort 9051
+SocksPort 9050
+```
+
 ## Usage
 
 ### Windows
